@@ -1,6 +1,5 @@
 #!/bin/bash
 
-USER_ACCESS_TOKEN=$(echo "$WORKFLOW_INPUTS_JSON" | jq -r '.userAccessToken')
 ASSIGNMENT_NAME=$(echo "$WORKFLOW_INPUTS_JSON" | jq -r '.assignmentName')
 ASSIGNMENT_ACCEPT_KEY=$(echo "$WORKFLOW_INPUTS_JSON" | jq -r '.assignmentAcceptKey')
 
@@ -22,8 +21,7 @@ export CLASSROOMS_APP_PRIVATE_KEY
 rm -f private-key-pkcs1.pem
 rm -f classrooms-app-private-key.pem
 
-# Mask user access token and assignment accept key in logs
-echo "::add-mask::${USER_ACCESS_TOKEN}"
+# Mask assignment accept key in logs
 echo "::add-mask::${ASSIGNMENT_ACCEPT_KEY}"
 
 # Git config
